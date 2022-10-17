@@ -11,7 +11,7 @@ public static class DataManager
         {
             if (!_data)
             {
-                Resources.Load("Data");
+                _data = Resources.Load("Data") as Data;
             }
             return _data;
         }

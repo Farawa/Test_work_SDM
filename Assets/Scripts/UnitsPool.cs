@@ -5,24 +5,24 @@ using UnityEngine;
 public class UnitsPool : MonoBehaviour
 {
     [SerializeField] private Transform unitsParent;
-    private List<GameObject> units = new List<GameObject>();
+    private List<Unit> units = new List<Unit>();
 
-    public GameObject GetUnit()
+    public Unit GetUnit()
     {
         foreach(var unit in units)
         {
-            if (!unit.activeSelf)
+            if (!unit.gameObject.activeSelf)
             {
-                unit.SetActive(true);
+                unit.gameObject.SetActive(true);
                 return unit;
             }
         }
         return AddNewUnit();
     }
 
-    private GameObject AddNewUnit()
+    private Unit AddNewUnit()
     {
-        var unit = Instantiate(gameObject, unitsParent);
+        var unit = Instantiate(DataManager.DataSO.UnitPrefab, unitsParent).GetComponent<Unit>();
         units.Add(unit);
         return unit;
     }
